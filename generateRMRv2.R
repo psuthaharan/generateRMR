@@ -53,6 +53,7 @@ generateRMR <- function(site){
   colnames(race_summary) <- c("race","hispanic","sex","count")
   
   
-  return(race_summary)
+  #return(race_summary)
+  write.csv(race_summary,paste('rmr/rmr_',site,'.csv'))
   
 }

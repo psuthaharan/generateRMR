@@ -1,11 +1,11 @@
-# load generateRMRv2()
+# load dependencies
 source("generateRMRv2.R")
 
-# run generateRMRv2()
-View(generateRMR(site = "Yale"))
-View(generateRMR(site = "Emory"))
-View(generateRMR(site = "NU"))
-View(generateRMR(site = "Temple"))
-View(generateRMR(site = "UCI"))
-View(generateRMR(site = "UGA"))
-View(generateRMR(site = "UMBC"))
+# main
+generateRMR(site = "Yale")
+generateRMR(site = "Emory")
+generateRMR(site = "NU")
+generateRMR(site = "Temple")
+generateRMR(site = "UCI")
+generateRMR(site = "UGA")
+generateRMR(site = "UMBC")
