@@ -54,6 +54,6 @@ generateRMR <- function(site){
   
   
   #return(race_summary)
-  write.csv(race_summary,paste('rmr/rmr_',site,'.csv'))
+  write.csv(race_summary,paste('rmr/rmr_',site,'.csv'),row.names = FALSE)
   
 }
