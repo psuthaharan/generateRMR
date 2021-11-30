@@ -118,7 +118,7 @@ generateRMR <- function(site){
   #return(race_summary)
   ## we need this for the annual reporting
   #write.csv(race_summary,paste('rmr/rmr_',tolower(site),'.csv'),row.names = FALSE)
-  write.csv(actual_recruitment_df,paste('rmr/',tolower(site),'_',Sys.Date(),'.csv'),row.names = TRUE)
+  write.csv(actual_recruitment_df,paste('rmr/',tolower(site),'_',Sys.Date(),'.csv', sep = ''), row.names = TRUE)
   
   
 }
