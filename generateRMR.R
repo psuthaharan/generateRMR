@@ -48,12 +48,21 @@ demo_dat_cleaned$race <- as.factor(demo_dat_cleaned$race)
 demo_dat_cleaned$race <- factor(demo_dat_cleaned$race, levels = c("race_american_indian",
                                                                   "race_asian",
                                                                   "race_native_hawaiian_or_other_pacific_islander",
-                                                                  "race_black",
-                                                                  "race_white",
+                                                                  "race_black_or_african_american",
+                                                                  "race_white_or_caucasian",
                                                                   "More Than One Race",
-                                                                  "Unknown or Not Reported"))
+                                                                  "Unknown or Not Reported"
+                                                                  ))
 
-levels(demo_dat_cleaned$race) <- c("")
+
+levels(demo_dat_cleaned$race) <- c("American Indian",
+                                   "Asian",
+                                   "Native Hawaiian or Other Pacific Islander",
+                                   "Black or African American",
+                                   "White",
+                                   "More Than Once Race",
+                                   "Unknown or Not Reported"
+                                   )
 
 # if (demo_dat_cleaned$count == 1){
 #   
@@ -80,14 +89,21 @@ generateRMR <- function(site){
   # df <- df[which(df$count == 1),]
   
   # summarize counts
-  race_summary <- demo_dat_cleaned[which(demo_dat_cleaned$site == "Yale"),]  %>%
+  race_summary <- demo_dat_cleaned[which(demo_dat_cleaned$site == site),]  %>%
     group_by(race,hispanic,sex_at_birth_omnibus) %>%
     summarise(count = n())
   
   colnames(race_summary) <- c("race","hispanic","sex","count")
+  #View(race_summary)
+  
+  ## calculate
+  # 1) Actual: Total Recruitment
+  # 2) Actual: Racial Minority Recruitment
+  # 3) Actual: Hispanic Ethnicity Recruitment
   
   
   #return(race_summary)
+  ## we need this for the annual reporting
   write.csv(race_summary,paste('rmr/rmr_',site,'.csv'),row.names = FALSE)
   
 }
