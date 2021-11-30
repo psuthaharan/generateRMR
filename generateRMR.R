@@ -64,6 +64,8 @@ levels(demo_dat_cleaned$race) <- c("American Indian",
                                    "Unknown or Not Reported"
                                    )
 
+
+
 # if (demo_dat_cleaned$count == 1){
 #   
 # } else if (demo_dat_cleaned$count > 1){
@@ -89,7 +91,7 @@ generateRMR <- function(site){
   # df <- df[which(df$count == 1),]
   
   # summarize counts
-  race_summary <- demo_dat_cleaned[which(demo_dat_cleaned$site == site),]  %>%
+  race_summary <- demo_dat_cleaned[which(demo_dat_cleaned$site == site),]  %>% # pipe
     group_by(race,hispanic,sex_at_birth_omnibus) %>%
     summarise(count = n())
   
@@ -101,9 +103,22 @@ generateRMR <- function(site){
   # 2) Actual: Racial Minority Recruitment
   # 3) Actual: Hispanic Ethnicity Recruitment
   
+
+
+  actual_recruitment_df <- t(data_frame(total_recruitment = sum(race_summary$count),
+                                        racial_minority = sum(race_summary$count) - sum(race_summary[which(race_summary$race == "White"),]$count),
+                                        hispanic_ethnicity = sum(race_summary[which(race_summary$hispanic == "Of Hispanic or Latino"),]$count)
+                                        )
+                             )
+
+  colnames(actual_recruitment_df) <- c("count")
+  row.names(actual_recruitment_df) <- c("Actual: Total Recruitment","Actual: Racial Minority Recruitment", "Actual: Hispanic Ethnicity Recruitment")
+
   
   #return(race_summary)
   ## we need this for the annual reporting
-  write.csv(race_summary,paste('rmr/rmr_',site,'.csv'),row.names = FALSE)
+  #write.csv(race_summary,paste('rmr/rmr_',tolower(site),'.csv'),row.names = FALSE)
+  write.csv(actual_recruitment_df,paste('rmr/tolower(site),'_',Sys.Date(),'.csv'),row.names = TRUE)
+  
   
 }

@@ -1,5 +1,5 @@
 # load dependencies
-source("generateRMRv2.R")
+source("generateRMR.R")
 
 # main
 generateRMR(site = "Yale")
