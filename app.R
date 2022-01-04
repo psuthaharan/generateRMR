@@ -8,14 +8,17 @@
 
 library(shiny)
 
+rm(list=ls())
+setwd(getwd())
+
 #data
-emory_df <- read.csv("rppr/rppr_Emory.csv")
-nu_df <- read.csv("rppr/rppr_NU.csv")
-temple_df <- read.csv("rppr/rppr_Temple.csv")
-uci_df <- read.csv("rppr/rppr_UCI.csv")
-uga_df <- read.csv("rppr/rppr_UGA.csv")
-umbc_df <- read.csv("rppr/rppr_UMBC.csv")
-yale_df <- read.csv("rppr/rppr_Yale.csv")
+emory_df <- read.csv("rppr/rppr_ Emory .csv")
+nu_df <- read.csv("rppr/rppr_ NU .csv")
+temple_df <- read.csv("rppr/rppr_ Temple .csv")
+uci_df <- read.csv("rppr/rppr_ UCI .csv")
+uga_df <- read.csv("rppr/rppr_ UGA .csv")
+umbc_df <- read.csv("rppr/rppr_ UMBC .csv")
+yale_df <- read.csv("rppr/rppr_ Yale .csv")
 
 # Define UI for app that draws a histogram ----
 ui <- shinyUI(fluidPage(
