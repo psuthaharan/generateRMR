@@ -8,8 +8,8 @@ shinyServer(function(input, output) {
 #     If EXPR evaluates to a character string then that string is matched (exactly)to the names of the elements in the alternatives.... 
 #     If there is a match then that element is evaluated
     switch(input$dataset,
-           "Yale" = table,
-           "mtcars" = mtcars,
+           "Yale" = yale_df,
+           "Emory" = emory_df,
            "trees" = trees)
   })
   
