@@ -1,3 +1,6 @@
+rm(list=ls())
+setwd(getwd())
+
 # load dependencies
 source("generateRMR.R")
 source("generateRPPR.R")
