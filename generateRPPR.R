@@ -64,7 +64,7 @@ levels(demo_dat_cleaned$race) <- c("American Indian",
 )
 
 generateRPPR <- function(site){
-
+  # site <-"Yale"
   # organize data in long format for summary
   df <- demo_dat_cleaned[which(demo_dat_cleaned$site == site),] %>%
     gather(key = "race", value = "count", race_asian, race_alaska_native, race_american_indian, race_black_or_african_american, race_white_or_caucasian, race_native_hawaiian_or_other_pacific_islander) %>%
@@ -83,7 +83,7 @@ generateRPPR <- function(site){
   
   ### format to Vijay's pretty table
   
-  # View(race_summary)
+  View(race_summary)
   
   a1 <- nrow(df[which(df$race == 'race_american_indian' & df$sex_at_birth_omnibus=='F' & df$hispanic=='Not of Hispanic or Latino'),])
   b1 <- nrow(df[which(df$race == 'race_american_indian' & df$sex_at_birth_omnibus=='M' & df$hispanic=='Not of Hispanic or Latino'),])
@@ -136,64 +136,61 @@ generateRPPR <- function(site){
   h5 <- nrow(df[which(df$race == 'race_white_or_caucasian' & df$sex_at_birth_omnibus == 'M' & df$hispanic == ''),])
   i5 <- nrow(df[which(df$race == 'race_white_or_caucasian' & df$sex_at_birth_omnibus == '' & df$hispanic == ''),])
 
-  # b6 <- nrow(df[which(df$race=='asian' & df$sex_at_birth_omnibus=='F' & df$hispanic=='Not of Hispanic or Latino'),])
-  # c6 <- nrow(df[which(df$race=='asian' & df$sex_at_birth_omnibus=='M' & df$hispanic=='Not of Hispanic or Latino'),])
-  # d6 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == '' & df$hispanic == 'Not of Hispanic or Latino'),])
-  # e6 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == 'F' & df$hispanic == 'Of Hispanic or Latino'),])
-  # f6 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == 'M' & df$hispanic == 'Of Hispanic or Latino'),])
-  # g6 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == '' & df$hispanic == 'Of Hispanic or Latino'),])
-  # h6 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == 'F' & df$hispanic == ''),])
-  # i6 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == 'M' & df$hispanic == ''),])
-  # j6 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == '' & df$hispanic == ''),])
+  a6 <- nrow(df[which(df$race == 'More Than One Race' & df$sex_at_birth_omnibus == 'F' & df$hispanic=='Not of Hispanic or Latino'),])
+  b6 <- nrow(df[which(df$race == 'More Than One Race' & df$sex_at_birth_omnibus == 'M' & df$hispanic=='Not of Hispanic or Latino'),])
+  c6 <- nrow(df[which(df$race == 'More Than One Race' & df$sex_at_birth_omnibus == '' & df$hispanic == 'Not of Hispanic or Latino'),])
+  d6 <- nrow(df[which(df$race == 'More Than One Race' & df$sex_at_birth_omnibus == 'F' & df$hispanic == 'Of Hispanic or Latino'),])
+  e6 <- nrow(df[which(df$race == 'More Than One Race' & df$sex_at_birth_omnibus == 'M' & df$hispanic == 'Of Hispanic or Latino'),])
+  f6 <- nrow(df[which(df$race == 'More Than One Race' & df$sex_at_birth_omnibus == '' & df$hispanic == 'Of Hispanic or Latino'),])
+  g6 <- nrow(df[which(df$race == 'More Than One Race' & df$sex_at_birth_omnibus == 'F' & df$hispanic == ''),])
+  h6 <- nrow(df[which(df$race == 'More Than One Race' & df$sex_at_birth_omnibus == 'M' & df$hispanic == ''),])
+  i6 <- nrow(df[which(df$race == 'More Than One Race' & df$sex_at_birth_omnibus == '' & df$hispanic == ''),])
 
-  # b7 <- nrow(df[which(df$race=='asian' & df$sex_at_birth_omnibus=='F' & df$hispanic=='Not of Hispanic or Latino'),])
-  # c7 <- nrow(df[which(df$race=='asian' & df$sex_at_birth_omnibus=='M' & df$hispanic=='Not of Hispanic or Latino'),])
-  # d7 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == '' & df$hispanic == 'Not of Hispanic or Latino'),])
-  # e7 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == 'F' & df$hispanic == 'Of Hispanic or Latino'),])
-  # f7 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == 'M' & df$hispanic == 'Of Hispanic or Latino'),])
-  # g7 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == '' & df$hispanic == 'Of Hispanic or Latino'),])
-  # h7 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == 'F' & df$hispanic == ''),])
-  # i7 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == 'M' & df$hispanic == ''),])
-  # j7 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == '' & df$hispanic == ''),])
+  a7 <- nrow(df[which(df$race == 'Unknown or Not Reported' & df$sex_at_birth_omnibus =='F' & df$hispanic=='Not of Hispanic or Latino'),])
+  b7 <- nrow(df[which(df$race == 'Unknown or Not Reported' & df$sex_at_birth_omnibus =='M' & df$hispanic=='Not of Hispanic or Latino'),])
+  c7 <- nrow(df[which(df$race == 'Unknown or Not Reported' & df$sex_at_birth_omnibus == '' & df$hispanic == 'Not of Hispanic or Latino'),])
+  d7 <- nrow(df[which(df$race == 'Unknown or Not Reported' & df$sex_at_birth_omnibus == 'F' & df$hispanic == 'Of Hispanic or Latino'),])
+  e7 <- nrow(df[which(df$race == 'Unknown or Not Reported' & df$sex_at_birth_omnibus == 'M' & df$hispanic == 'Of Hispanic or Latino'),])
+  f7 <- nrow(df[which(df$race == 'Unknown or Not Reported' & df$sex_at_birth_omnibus == '' & df$hispanic == 'Of Hispanic or Latino'),])
+  g7 <- nrow(df[which(df$race == 'Unknown or Not Reported' & df$sex_at_birth_omnibus == 'F' & df$hispanic == ''),])
+  h7 <- nrow(df[which(df$race == 'Unknown or Not Reported' & df$sex_at_birth_omnibus == 'M' & df$hispanic == ''),])
+  i7 <- nrow(df[which(df$race == 'Unknown or Not Reported' & df$sex_at_birth_omnibus == '' & df$hispanic == ''),])
   
-  # b8 <- nrow(df[which(df$race=='asian' & df$sex_at_birth_omnibus=='F' & df$hispanic=='Not of Hispanic or Latino'),])
-  # c8 <- nrow(df[which(df$race=='asian' & df$sex_at_birth_omnibus=='M' & df$hispanic=='Not of Hispanic or Latino'),])
-  # d8 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == '' & df$hispanic == 'Not of Hispanic or Latino'),])
-  # e8 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == 'F' & df$hispanic == 'Of Hispanic or Latino'),])
-  # f8 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == 'M' & df$hispanic == 'Of Hispanic or Latino'),])
-  # g8 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == '' & df$hispanic == 'Of Hispanic or Latino'),])
-  # h8 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == 'F' & df$hispanic == ''),])
-  # i8 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == 'M' & df$hispanic == ''),])
-  # j8 <- nrow(df[which(df$race == 'asian' & df$sex_at_birth_omnibus == '' & df$hispanic == ''),])
-  
-  table <- data.frame(xxx = c('','','','',''),
-                      female_not_hispanic = c(a1,a2,a3,a4,a5),
-                      male_not_hispanic = c(b1,b2,b3,b4,b5),
-                      not_reported_not_hispanic = c(c1,c2,c3,c4,c5),
-                      female_hispanic = c(d1,d2,d3,d4,d5),
-                      male_hispanic = c(e1,e2,e3,e4,e5),
-                      not_reported_hispanic = c(f1,f2,f3,f4,f5),
-                      female_unknown = c(g1,g2,g3,g4,g5),
-                      male_unknown = c(h1,h2,h3,h4,h5),
-                      not_reported_unknown = c(i1,i2,i3,i4,i5))
-  
+  a8 <- sum(a1,a2,a3,a4,a5,a6,a7)
+  b8 <- sum(b1,b2,b3,b4,b5,b6,b7)
+  c8 <- sum(c1,c2,c3,c4,c5,c6,c7)
+  d8 <- sum(d1,d2,d3,d4,d5,d6,d7)
+  e8 <- sum(e1,e2,e3,e4,e5,e6,e7)
+  f8 <- sum(f1,f2,f3,f4,f5,f6,f7)
+  g8 <- sum(g1,g2,g3,g4,g5,g6,g7)
+  h8 <- sum(h1,h2,h3,h4,h5,h6,h7)
+  i8 <- sum(i1,i2,i3,i4,i5,i6,i7)
 
+  
+  # xxx = ''
+  
+  table <- data.frame(xxx = c('','','','','','','',''),
+                      female_not_hispanic = c(a1,a2,a3,a4,a5,a6,a7,a8),
+                      male_not_hispanic = c(b1,b2,b3,b4,b5,b6,b7,b8),
+                      not_reported_not_hispanic = c(c1,c2,c3,c4,c5,c6,c7,c8),
+                      female_hispanic = c(d1,d2,d3,d4,d5,d6,d7,d8),
+                      male_hispanic = c(e1,e2,e3,e4,e5,e6,e7,e8),
+                      not_reported_hispanic = c(f1,f2,f3,f4,f5,f6,f7,f8),
+                      female_unknown = c(g1,g2,g3,g4,g5,g6,g7,g8),
+                      male_unknown = c(h1,h2,h3,h4,h5,h6,h7,h8),
+                      not_reported_unknown = c(i1,i2,i3,i4,i5,i6,i7,i8)
+                      )
+  
+  colnames(table) <- c("Female\n Not Hispanic","new_col1_name","new_col1_name","new_col1_name","new_col1_name","new_col1_name","new_col1_name","new_col1_name","new_col1_name","new_col1_name")
   
   row.names(table) <- c("American Indian","Asian","Native Hawaiian or Pacific Islander",
-                        "Black or African American","White")
-  # ,"More Than One Race","Unknown or Not Reported","Totals")
+                        "Black or African American","White or Caucasian","More Than One Race",
+                        "Unknown or Not Reported","Totals")
   
-  
-  # b3 <- race_summary[which(race_summary$race=='american_indian' && race_summary$sex=='F' && race_summary$hispanic=='Not of Hispanic or Latino'),]$count
-  # c3 <- race_summary[which(race_summary$race=='american_indian' && race_summary$sex=='M' && race_summary$hispanic=='Not of Hispanic or Latino'),]$count
-  # 
-  
+  #write.csv(table,paste('rppr/rppr_',site,'.csv'),row.names = TRUE)
   
   return(rppr_table = table)
-  # site = "Yale"
-  # write.csv(race_summary,paste('rppr/rppr_',site,'.csv'),row.names = FALSE)
 
-  #write.csv(table,paste('rppr/rppr_',site,'.csv'),row.names = TRUE)
   
   
 }
