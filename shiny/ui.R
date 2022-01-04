@@ -1,10 +1,12 @@
 library(shiny)
+
 shinyUI(fluidPage(
+  
   titlePanel(h1('Research Performance Progress Report (RPPR)', align="center")),
   
-  
   fluidRow(
-    column(4,
+    
+    column(6,
            # sidebarLayout(position = "right",
                          sidebarPanel(
                            selectInput("dataset", "Select CAPR Site:", choices = c("Yale", "Emory", "NU", "Temple", "UCI", "UGA","UMBC")),
@@ -13,20 +15,21 @@ shinyUI(fluidPage(
                            radioButtons("type", "Format type:",
                                         choices = c("Excel (CSV)")),
                            br(),
-                           helpText(" Click on the download button to download the dataset observations"),
+                           helpText(" Click to download the RPPR:"),
                            downloadButton('downloadData', 'Download')
                            
                          # ),
     ),
-    column(8,
+    
+    column(6,
            mainPanel(
              
              tableOutput('table')
            )
     )
+    
   ),
-  
-
 
   )
+  
 ))

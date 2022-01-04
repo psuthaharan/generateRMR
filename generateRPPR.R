@@ -169,8 +169,7 @@ generateRPPR <- function(site){
   
   # xxx = ''
   
-  table <- data.frame(xxx = c('','','','','','','',''),
-                      female_not_hispanic = c(a1,a2,a3,a4,a5,a6,a7,a8),
+  table <- data.frame(female_not_hispanic = c(a1,a2,a3,a4,a5,a6,a7,a8),
                       male_not_hispanic = c(b1,b2,b3,b4,b5,b6,b7,b8),
                       not_reported_not_hispanic = c(c1,c2,c3,c4,c5,c6,c7,c8),
                       female_hispanic = c(d1,d2,d3,d4,d5,d6,d7,d8),
@@ -181,13 +180,13 @@ generateRPPR <- function(site){
                       not_reported_unknown = c(i1,i2,i3,i4,i5,i6,i7,i8)
                       )
   
-  colnames(table) <- c("Female\n Not Hispanic","new_col1_name","new_col1_name","new_col1_name","new_col1_name","new_col1_name","new_col1_name","new_col1_name","new_col1_name","new_col1_name")
+  colnames(table) <- c("Female\n Not Hispanic","Male\n Not Hispanic","Not Reported\n Not Hispanic","Female\n Hispanic","Male\n  Hispanic","Not Reported\n  Hispanic","Female\n Unknown","Male\n Unknown","Not Reported\n Unknown")
   
   row.names(table) <- c("American Indian","Asian","Native Hawaiian or Pacific Islander",
                         "Black or African American","White or Caucasian","More Than One Race",
                         "Unknown or Not Reported","Totals")
   
-  #write.csv(table,paste('rppr/rppr_',site,'.csv'),row.names = TRUE)
+  write.csv(table,paste('rppr/rppr_',site,'.csv'),row.names = TRUE)
   
   return(rppr_table = table)
 

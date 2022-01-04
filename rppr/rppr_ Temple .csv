@@ -1,6 +1,18 @@
-"","female_not_hispanic","male_not_hispanic","not_reported_not_hispanic","female_hispanic","male_hispanic","not_reported_hispanic","female_unknown","male_unknown","not_reported_unknown"
+"","Female
+ Not Hispanic","Male
+ Not Hispanic","Not Reported
+ Not Hispanic","Female
+ Hispanic","Male
+  Hispanic","Not Reported
+  Hispanic","Female
+ Unknown","Male
+ Unknown","Not Reported
+ Unknown"
 "American Indian",1,0,0,0,0,0,0,0,0
 "Asian",7,2,0,0,0,0,0,0,0
 "Native Hawaiian or Pacific Islander",1,0,0,0,0,0,0,0,0
 "Black or African American",6,1,0,0,0,0,0,0,0
-"White",10,7,0,0,0,0,0,0,0
+"White or Caucasian",10,7,0,1,0,0,0,0,0
+"More Than One Race",0,0,0,0,0,0,0,0,0
+"Unknown or Not Reported",0,0,0,0,0,0,0,0,0
+"Totals",25,10,0,1,0,0,0,0,0

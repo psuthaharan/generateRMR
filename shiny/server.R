@@ -49,7 +49,7 @@ shinyServer(function(input, output) {
       sep <- switch(input$type, "Excel (CSV)" = ",", "Text (TSV)" = "\t","Text (Space Separated)" = " ", "Doc" = " ")
       
       # Write to a file specified by the 'file' argument
-      write.table(datasetInput(), file, sep = sep,
+      write.csv(datasetInput(), file, sep = sep,
                   row.names = TRUE)
     }
   )
