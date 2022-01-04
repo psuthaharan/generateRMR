@@ -12,7 +12,10 @@ library(shiny)
 #setwd(getwd())
 
 # load dependencies
-#source("main.R")
+source("main.R")
+
+# fetch dataframes
+main()
 
 # Define UI for app that draws a histogram ----
 ui <- shinyUI(fluidPage(
