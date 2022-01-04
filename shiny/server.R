@@ -10,7 +10,11 @@ shinyServer(function(input, output) {
     switch(input$dataset,
            "Yale" = yale_df,
            "Emory" = emory_df,
-           "trees" = trees)
+           "NU" = nu_df,
+           "Temple" = temple_df,
+           "UCI" = uci_df,
+           "UGA" = uga_df,
+           "UMBC" = umbc_df)
   })
   
 ##### A reactive function for the file extension ---- > this reactive function will be used by download handler ######

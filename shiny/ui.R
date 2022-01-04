@@ -3,7 +3,7 @@ shinyUI(fluidPage(
   titlePanel(h1('Research Performance Progress Report (RPPR)', align="center")),
   sidebarLayout(
     sidebarPanel(
-      selectInput("dataset", "Select CAPR Site:", choices = c("Yale", "Emory", "trees")),
+      selectInput("dataset", "Select CAPR Site:", choices = c("Yale", "Emory", "NU", "Temple", "UCI", "UGA","UMBC")),
       br(),
       helpText(" Select the download format"),
       radioButtons("type", "Format type:",

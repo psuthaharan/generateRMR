@@ -39,7 +39,7 @@ demo_dat_cleaned$hispanic <- ifelse(demo_dat_cleaned$hispanic == 4,"Not of Hispa
 generateRPPR <- function(site){
   
   # organize data in long format for summary
-  df <- demo_dat_cleaned[which(demo_dat_cleaned$site == "Yale"),] %>%
+  df <- demo_dat_cleaned[which(demo_dat_cleaned$site == site),] %>%
     gather(key = "race", value = "count", asian, alaska_native, american_indian, black_or_african_american, white_or_caucasian, native_hawaiian_or_other_pacific_islander) %>%
     convert_as_factor(race,hispanic,sex_at_birth_omnibus)
   
