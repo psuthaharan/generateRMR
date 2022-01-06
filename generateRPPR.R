@@ -186,7 +186,7 @@ generateRPPR <- function(site){
                         "Black or African American","White or Caucasian","More Than One Race",
                         "Unknown or Not Reported","Totals")
   
-  write.csv(table,paste('rppr/rppr_',site,'.csv'),row.names = TRUE)
+  write.csv(table,paste('rppr/',site,'.csv',sep=''),row.names = TRUE)
   
   return(rppr_table = table)
 

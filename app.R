@@ -12,17 +12,18 @@ rm(list=ls())
 setwd(getwd())
 
 #data
-emory_df <- read.csv("rppr/rppr_ Emory .csv")
-nu_df <- read.csv("rppr/rppr_ NU .csv")
-temple_df <- read.csv("rppr/rppr_ Temple .csv")
-uci_df <- read.csv("rppr/rppr_ UCI .csv")
-uga_df <- read.csv("rppr/rppr_ UGA .csv")
-umbc_df <- read.csv("rppr/rppr_ UMBC .csv")
-yale_df <- read.csv("rppr/rppr_ Yale .csv")
+emory_df <- read.csv("rppr/Emory.csv")
+nu_df <- read.csv("rppr/NU.csv")
+temple_df <- read.csv("rppr/Temple.csv")
+uci_df <- read.csv("rppr/UCI.csv")
+uga_df <- read.csv("rppr/UGA.csv")
+umbc_df <- read.csv("rppr/UMBC.csv")
+yale_df <- read.csv("rppr/Yale.csv")
+
 
 # Define UI for app that draws a histogram ----
 ui <- shinyUI(fluidPage(
-  
+
   titlePanel(h1('Research Performance Progress Report (RPPR)', align="center")),
   
   fluidRow(
@@ -50,7 +51,7 @@ ui <- shinyUI(fluidPage(
            )
            
     ),
-    
+    tags$title("RPPR"),
   )
   
 ))
