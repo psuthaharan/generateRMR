@@ -66,9 +66,20 @@ levels(demo_dat_cleaned$race) <- c("American Indian",
 generateRPPR <- function(site){
   # site <-"Yale"
   # organize data in long format for summary
+  
+  if (site == "UMBC" | site == "UCI") {
+    df <- demo_dat_cleaned[which(demo_dat_cleaned$site == "UMBC" | demo_dat_cleaned$site == "UCI"),] %>%
+      gather(key = "race", value = "count", race_asian, race_alaska_native, race_american_indian, race_black_or_african_american, race_white_or_caucasian, race_native_hawaiian_or_other_pacific_islander) %>%
+      convert_as_factor(race,hispanic,sex_at_birth_omnibus)
+  } else if (site == "UGA" | site == "Emory") {
+    df <- demo_dat_cleaned[which(demo_dat_cleaned$site == "UGA" | demo_dat_cleaned$site == "Emory"),] %>%
+      gather(key = "race", value = "count", race_asian, race_alaska_native, race_american_indian, race_black_or_african_american, race_white_or_caucasian, race_native_hawaiian_or_other_pacific_islander) %>%
+      convert_as_factor(race,hispanic,sex_at_birth_omnibus)
+  } else {
   df <- demo_dat_cleaned[which(demo_dat_cleaned$site == site),] %>%
     gather(key = "race", value = "count", race_asian, race_alaska_native, race_american_indian, race_black_or_african_american, race_white_or_caucasian, race_native_hawaiian_or_other_pacific_islander) %>%
     convert_as_factor(race,hispanic,sex_at_birth_omnibus)
+  }
   
   # filter rows with counts
   df <- df[which(df$count == 1),]
@@ -186,7 +197,14 @@ generateRPPR <- function(site){
                         "Black or African American","White or Caucasian","More Than One Race",
                         "Unknown or Not Reported","Totals")
   
-  write.csv(table,paste('rppr/',site,'.csv',sep=''),row.names = TRUE)
+  if (site == "UMBC" | site == "UCI") {
+    write.csv(table,paste('rppr/','UMBC & UCI','.csv',sep=''),row.names = TRUE)
+  } else if (site == "UGA" | site == "Emory") {
+    write.csv(table,paste('rppr/','UGA & Emory','.csv',sep=''),row.names = TRUE)
+  } else {
+    write.csv(table,paste('rppr/',site,'.csv',sep=''),row.names = TRUE)
+  }
+
   
   return(rppr_table = table)
 

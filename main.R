@@ -16,9 +16,9 @@ source("generateRPPR.R")
 
 
 yale_df <- generateRPPR(site = "Yale")
-emory_df <- generateRPPR(site = "Emory")
+uga_emory_df <- generateRPPR(site = "Emory")
 nu_df<- generateRPPR(site = "NU")
 temple_df <- generateRPPR(site = "Temple")
-uci_df <- generateRPPR(site = "UCI")
-uga_df <- generateRPPR(site = "UGA")
-umbc_df <- generateRPPR(site = "UMBC")
+umbc_uci_df <- generateRPPR(site = "UCI")
+uga_emory_df <- generateRPPR(site = "UGA")
+umbc_uci_df <- generateRPPR(site = "UMBC")

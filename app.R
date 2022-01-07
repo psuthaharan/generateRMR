@@ -12,12 +12,18 @@ rm(list=ls())
 setwd(getwd())
 
 #data
-emory_df <- read.csv("rppr/Emory.csv")
+# emory_df <- read.csv("rppr/Emory.csv")
+# nu_df <- read.csv("rppr/NU.csv")
+# temple_df <- read.csv("rppr/Temple.csv")
+# uci_df <- read.csv("rppr/UCI.csv")
+# uga_df <- read.csv("rppr/UGA.csv")
+# umbc_df <- read.csv("rppr/UMBC.csv")
+# yale_df <- read.csv("rppr/Yale.csv")
+
+uga_emory_df <- read.csv("rppr/UGA & Emory.csv")
 nu_df <- read.csv("rppr/NU.csv")
 temple_df <- read.csv("rppr/Temple.csv")
-uci_df <- read.csv("rppr/UCI.csv")
-uga_df <- read.csv("rppr/UGA.csv")
-umbc_df <- read.csv("rppr/UMBC.csv")
+umbc_uci_df <- read.csv("rppr/UMBC & UCI.csv")
 yale_df <- read.csv("rppr/Yale.csv")
 
 
@@ -31,7 +37,7 @@ ui <- shinyUI(fluidPage(
     column(6,
            # sidebarLayout(position = "right",
            sidebarPanel(
-             selectInput("dataset", "Select CAPR Site:", choices = c("Yale", "Emory", "NU", "Temple", "UCI", "UGA","UMBC")),
+             selectInput("dataset", "Select CAPR Site:", choices = c("Yale", "UGA & Emory", "NU", "Temple", "UMBC & UCI")),
              br(),
              helpText(" Select the download format"),
              radioButtons("type", "Format type:",
@@ -67,12 +73,10 @@ server <- shinyServer(function(input, output) {
     #     If there is a match then that element is evaluated
     switch(input$dataset,
            "Yale" = yale_df,
-           "Emory" = emory_df,
+           "UGA & Emory" = uga_emory_df,
            "NU" = nu_df,
            "Temple" = temple_df,
-           "UCI" = uci_df,
-           "UGA" = uga_df,
-           "UMBC" = umbc_df)
+           "UMBC & UCI" = umbc_uci_df)
   })
   
   ##### A reactive function for the file extension ---- > this reactive function will be used by download handler ######
