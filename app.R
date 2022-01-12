@@ -26,6 +26,12 @@ temple_df <- read.csv("rppr/Temple.csv")
 umbc_uci_df <- read.csv("rppr/UMBC & UCI.csv")
 yale_df <- read.csv("rppr/Yale.csv")
 
+uga_emory_assit_df <- read.csv("assist/UGA & Emory.csv")
+nu_assist_df <- read.csv("assist/NU.csv")
+temple_assist_df <- read.csv("assist/Temple.csv")
+umbc_uci_assist_df <- read.csv("assist/UMBC & UCI.csv")
+yale_assist_df <- read.csv("assist/Yale.csv")
+
 
 # Define UI for app that draws a histogram ----
 ui <- shinyUI(fluidPage(

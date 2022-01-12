@@ -1,4 +1,4 @@
-# function: generateRMR()
+# function: generateRPPR()
 # input: site
 # output: table per site
 
