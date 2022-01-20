@@ -49,7 +49,7 @@ ui <- shinyUI(fluidPage(
              radioButtons("type", "Format type:",
                           choices = c("Excel (CSV)")),
              br(),
-             helpText(" Click to download the RPPR:"),
+             helpText(" Click to download the RPPR ASSIST:"),
              downloadButton('downloadData', 'Download')
              
              # ),
@@ -78,11 +78,11 @@ server <- shinyServer(function(input, output) {
     #     If EXPR evaluates to a character string then that string is matched (exactly)to the names of the elements in the alternatives.... 
     #     If there is a match then that element is evaluated
     switch(input$dataset,
-           "Yale" = yale_df,
-           "UGA & Emory" = uga_emory_df,
-           "NU" = nu_df,
-           "Temple" = temple_df,
-           "UMBC & UCI" = umbc_uci_df)
+           "Yale" = yale_assist_df,
+           "UGA & Emory" = uga_emory_assist_df,
+           "NU" = nu_assist_df,
+           "Temple" = temple_assist_df,
+           "UMBC & UCI" = umbc_uci_assist_df)
   })
   
   ##### A reactive function for the file extension ---- > this reactive function will be used by download handler ######
