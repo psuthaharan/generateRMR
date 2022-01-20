@@ -126,17 +126,25 @@ generateRPPRassist <- function(site){
                                                 ifelse(df$race == 'race_more_than_one_race', 'More than one race',
                                                        ifelse(df$race == 'race_unknown_or_not_reported', 'Unknown','')))))))
 
+  # rename values in 'gender' column
+  df$gender <- ifelse(df$gender == 'M', 'Male',
+                    ifelse(df$gender == 'F','Female',''))  
   
   
-  
-  
+
   
   if (site == "UMBC" | site == "UCI") {
-    write.csv(df,paste('assist/','UMBC & UCI','.csv',sep=''),row.names = TRUE)
+    # remove site column and reorder remaining columns
+    df = subset(df, select = c(race,ethnicity,gender,age,age_unit) )
+    write.csv(df,paste('assist/','UMBC & UCI','.csv',sep=''),row.names = FALSE)
   } else if (site == "UGA" | site == "Emory") {
-    write.csv(df,paste('assist/','UGA & Emory','.csv',sep=''),row.names = TRUE)
+    # remove site column and reorder remaining columns
+    df = subset(df, select = c(race,ethnicity,gender,age,age_unit) )
+    write.csv(df,paste('assist/','UGA & Emory','.csv',sep=''),row.names = FALSE)
   } else {
-    write.csv(df,paste('assist/',site,'.csv',sep=''),row.names = TRUE)
+    # remove site column and reorder remaining columns
+    df = subset(df, select = c(race,ethnicity,gender,age,age_unit) )
+    write.csv(df,paste('assist/',site,'.csv',sep=''),row.names = FALSE)
   }
 
   
