@@ -3,17 +3,17 @@ setwd(getwd())
 
 # load dependencies
 source("generateRMR.R")
-source("generateRPPR.R")
+# source("generateRPPR.R")
 source("generateRPPRassist.R")
 
-# main
-# generateRMR(site = "Yale")
-# generateRMR(site = "Emory")
-# generateRMR(site = "NU")
-# generateRMR(site = "Temple")
-# generateRMR(site = "UCI")
-# generateRMR(site = "UGA")
-# generateRMR(site = "UMBC")
+# create RMR extracts
+generateRMR(site = "Yale")
+generateRMR(site = "Emory")
+generateRMR(site = "NU")
+generateRMR(site = "Temple")
+generateRMR(site = "UCI")
+generateRMR(site = "UGA")
+generateRMR(site = "UMBC")
 
 
 # yale_df <- generateRPPR(site = "Yale")
@@ -29,5 +29,5 @@ uga_emory_assist_df <- generateRPPRassist(site = "Emory")
 nu_assist_df<- generateRPPRassist(site = "NU")
 temple_assist_df <- generateRPPRassist(site = "Temple")
 umbc_uci_assist_df <- generateRPPRassist(site = "UCI")
-uga_emory__assist_df <- generateRPPRassist(site = "UGA")
+uga_emory_assist_df <- generateRPPRassist(site = "UGA")
 umbc_uci_assist_df <- generateRPPRassist(site = "UMBC")

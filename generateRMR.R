@@ -2,16 +2,42 @@
 # input: site
 # output: table per site
 
-# rm(list=ls())
+#rm(list=ls())
 # setwd(getwd())
 
 library(dplyr)
 library(rstatix)
+library(qualtRics)
+#library(sqldf)
 
-demo <- read.csv('CAPR+Demographics.csv')
+# sensitive info for api key
+source("secrets.R")
 
-demo_dat <- demo[,c(11:16,18,73:74)]
-demo_dat_cleaned <- demo_dat[-c(1:2),]
+# store qualtrics API credentials
+qualtRics::qualtrics_api_credentials(api_key = apiKey, 
+                          base_url = baseUrl,
+                          install = TRUE,
+                          overwrite = TRUE)
+
+# return all surveyIds into dataframe
+# surveys <- all_surveys() 
+
+surveyId <- "SV_9nK9whLLeyk4jMF"
+
+# create dataframe from capr demographics from qualtrics API
+demo <- fetch_survey(surveyID = surveyId,
+                         verbose = FALSE,
+                         label = FALSE, # both of these must be set to false to import numeric
+                         convert = FALSE, # both of these must be set to false to import numeric
+                         force_request = TRUE)
+
+# importing csv deprecated in favor of API above..
+# demo <- read.csv('CAPR+Demographics.csv')
+# demo_dat_cleaned <- demo[,c(11:16,18,73:74)]
+
+# select columns of interest
+demo_dat_cleaned <- demo[,c(11:16,18,73:74)]
+#demo_dat_cleaned <- demo_dat[-c(1:2),]
 colnames(demo_dat_cleaned) <- c("race_asian",
                                 "race_alaska_native",
                                 "race_american_indian",
@@ -21,6 +47,7 @@ colnames(demo_dat_cleaned) <- c("race_asian",
                                 "hispanic", # 4 - Not of Hispanic or Latino, 1 - Of Hispanic or Latino
                                 "site",
                                 "sex_at_birth_omnibus")
+
 # recode hispanic
 demo_dat_cleaned$hispanic <- ifelse(demo_dat_cleaned$hispanic == 4,"Not of Hispanic or Latino",
                                                ifelse(demo_dat_cleaned$hispanic == 1, "Of Hispanic or Latino",""))
