@@ -7,37 +7,17 @@
 
 library(dplyr)
 library(rstatix)
-library(qualtRics)
-#library(sqldf)
 
-# sensitive info for api key
-source("secrets.R")
 
-# store qualtrics API credentials
-qualtRics::qualtrics_api_credentials(api_key = apiKey, 
-                          base_url = baseUrl,
-                          install = TRUE,
-                          overwrite = TRUE)
 
-# return all surveyIds into dataframe
-# surveys <- all_surveys() 
-
-surveyId <- "SV_9nK9whLLeyk4jMF"
-
-# create dataframe from capr demographics from qualtrics API
-demo <- fetch_survey(surveyID = surveyId,
-                         verbose = FALSE,
-                         label = FALSE, # both of these must be set to false to import numeric
-                         convert = FALSE, # both of these must be set to false to import numeric
-                         force_request = TRUE)
-
-# importing csv deprecated in favor of API above..
-# demo <- read.csv('CAPR+Demographics.csv')
-# demo_dat_cleaned <- demo[,c(11:16,18,73:74)]
+demo_new <- read.csv('CAPR+Demographics_killme.csv')
+demo_dat_cleaned <- demo_new[-c(1:2),c(11,13,66:67)]
 
 # select columns of interest
-demo_dat_cleaned <- demo[,c(11:16,18,73:74)]
-#demo_dat_cleaned <- demo_dat[-c(1:2),]
+# importing csv deprecated in favor of API in getSurvey()
+demo <- read.csv('CAPR+Demographics.csv')
+demo_dat_cleaned <- demo[-c(1:2),c(11:16,18,73:74)]
+
 colnames(demo_dat_cleaned) <- c("race_asian",
                                 "race_alaska_native",
                                 "race_american_indian",

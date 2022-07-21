@@ -5,78 +5,28 @@
 # rm(list=ls())
 # setwd(getwd())
 
-demo <- read.csv('CAPR+Demographics.csv')
+demo_new <- read.csv('CAPR+Demographics_killme.csv')
 
-#demo_dat <- demo[, grepl("Demog.1_", names(demo))]
-#demo_dat <- demo[,c(12:16,19,72:73)]
-demo_dat <- demo[,c(11:16,18,73:74)]
-demo_dat_cleaned <- demo_dat[-c(1:2),]
-colnames(demo_dat_cleaned) <- c("race_asian",
-                                "race_alaska_native",
-                                "race_american_indian",
-                                "race_black_or_african_american",
-                                "race_white_or_caucasian",
-                                "race_native_hawaiian_or_other_pacific_islander",
+# select columns of interest
+demo_dat_cleaned <- demo_new[-c(1:2),c(11,13,66:67)]
+
+
+
+colnames(demo_dat_cleaned) <- c("race",
                                 "hispanic", # 4 - Not of Hispanic or Latino, 1 - Of Hispanic or Latino
                                 "site",
                                 "sex_at_birth_omnibus")
+# recode race
+demo_dat_cleaned$race <- ifelse(demo_dat_cleaned$race == 1,"race_asian",
+                                ifelse(demo_dat_cleaned$race == 2,"race_alaska_native",
+                                       ifelse(demo_dat_cleaned$race == 3,"race_american_indian",
+                                              ifelse(demo_dat_cleaned$race == 4,"race_black_or_african_american",
+                                                     ifelse(demo_dat_cleaned$race == 5,"race_white_or_caucasian",
+                                                            ifelse(demo_dat_cleaned$race == 6, "race_native_hawaiian_or_other_pacific_islander",
+                                                                   ifelse(nchar(demo_dat_cleaned$race) >= 3, "race_more_than_one_race", "race_unknown_or_not_reported")))))))
 # recode hispanic
 demo_dat_cleaned$hispanic <- ifelse(demo_dat_cleaned$hispanic == 4,"Not of Hispanic or Latino",
                                     ifelse(demo_dat_cleaned$hispanic == 1, "Of Hispanic or Latino",""))
-
-
-demo_dat_cleaned$count <- rowSums(as.data.frame(sapply(demo_dat_cleaned[, grepl("race_", names(demo_dat_cleaned))], as.numeric)), na.rm = TRUE)
-
-# if count = 1, then grab single race column
-# else if count > 1, then label as "More Than One Race"
-# else label as "Unknown or Not Reported"
-
-race_vector <- c()
-
-for (i in 1:nrow(demo_dat_cleaned)){
-  race_vector[i] <- ifelse(demo_dat_cleaned[i,]$count == 1,colnames(demo_dat_cleaned)[1:6][which.max(demo_dat_cleaned[i,1:6])],
-                           ifelse(demo_dat_cleaned[i,]$count > 1, "More Than One Race","Unknown or Not Reported"))
-}
-
-demo_dat_cleaned$race <- race_vector
-demo_dat_cleaned$race <- as.factor(demo_dat_cleaned$race)
-demo_dat_cleaned$race <- factor(demo_dat_cleaned$race, levels = c("race_american_indian",
-                                                                  "race_asian",
-                                                                  "race_native_hawaiian_or_other_pacific_islander",
-                                                                  "race_black_or_african_american",
-                                                                  "race_white_or_caucasian",
-                                                                  "More Than One Race",
-                                                                  "Unknown or Not Reported"
-))
-
-# add race composite race columns
-demo_dat_cleaned["race_more_than_one_race"] <- 0
-demo_dat_cleaned["race_unknown_or_not_reported"] <- 0
-
-# iterate over data frame to remove multiple races and add to composite race columns
-for (i in 1:nrow(demo_dat_cleaned)){
-  if (demo_dat_cleaned[i,]$race == "More Than One Race") {
-    demo_dat_cleaned[i,]$race_american_indian = ''
-    demo_dat_cleaned[i,]$race_asian = ''
-    demo_dat_cleaned[i,]$race_native_hawaiian_or_other_pacific_islander = ''
-    demo_dat_cleaned[i,]$race_black_or_african_american = ''
-    demo_dat_cleaned[i,]$race_white_or_caucasian = ''
-    demo_dat_cleaned[i,]$race_more_than_one_race = 1
-  } else if (demo_dat_cleaned[i,]$race == "Unknown or Not Reported"){
-    demo_dat_cleaned[i,]$race_unknown_or_not_reported = 1
-  }
-
-}
-
-
-levels(demo_dat_cleaned$race) <- c("American Indian",
-                                   "Asian",
-                                   "Native Hawaiian or Other Pacific Islander",
-                                   "Black or African American",
-                                   "White",
-                                   "More Than Once Race",
-                                   "Unknown or Not Reported"
-)
 
 generateRPPR <- function(site){
   # site <-"Temple"

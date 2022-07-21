@@ -2,13 +2,10 @@
 # input: site
 # output: table per site
 
-rm(list=ls())
-setwd(getwd())
+# rm(list=ls())
+# setwd(getwd())
 
-library(dplyr)
-library(rstatix)
-library(xlsx)
-
+#importing csv deprecated in favor of API in getSurvey
 demo <- read.csv('CAPR+Demographics.csv')
 
 #demo_dat <- demo[, grepl("Demog.1_", names(demo))]
