@@ -7,10 +7,10 @@ library(rstatix)
 library(xlsx)
 
 # load demo into df via API
-source("getSurvey.R")
+# source("getSurvey.R")
 
 # create RMR extracts
-source("generateRMR.R")
+source("generateRMRnew.R")
 generateRMR(site = "Yale")
 generateRMR(site = "Emory")
 generateRMR(site = "NU")
@@ -20,7 +20,7 @@ generateRMR(site = "UGA")
 generateRMR(site = "UMBC")
 
 # create RPPR extracts
-source("generateRPPRAssist.R")
+source("generateRPPRAssistNew.R")
 yale_assist_df <- generateRPPRassist(site = "Yale")
 uga_emory_assist_df <- generateRPPRassist(site = "Emory")
 nu_assist_df<- generateRPPRassist(site = "NU")

@@ -1,4 +1,5 @@
 # function: generateRMR()
+# ANNUAL reporting January 1
 # input: site
 # output: table per site
 
